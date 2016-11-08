@@ -1,0 +1,51 @@
+The given differential equation that models the curvature is as follow:
+
+\begin{center}
+    \input{curvature.tex}
+\end{center}
+
+\subsection{Initial values}
+The ruler is one meter long and at is drawn such that the edges are 0.3m away from the center along the y-axis. Thus our initial values are $y(0)=0.3$, $y'(0)=0$ and $y(a)=0$. Since the bow is symmetrical around the y-axis we can also conclude that the arc length between $x=0$ and $x=a$ is $0.5$. We also only need to consider this interval. 
+
+\subsection{Approach}
+The general algorithm is to take a guess for the value of $q$, solve the differential equation with this value of $q$ to get the x-value right before the curve intersects the x-axis and the x-value right after. With these two guesses for a potential $a$ we interpolate a more precise value of $x$ at the intersection. If this value yields an arc length satisfyingly close to 0.5 we terminate our algorithm and plot the curve with our new-found value.
+
+Our approach to solving this problem was to first of all solve the simplified equation at $x=0$ to find out the relationship between our two unknowns, q and a. We then used this relationship to determine a reasonable interval of guesses for $q$.
+
+For every guess of $q$ we use a built in Matlab function that numerically solves a nonstiff differential equation. We then get our two guesses for $a$; One slightly smaller than the actual value and one slightly larger. Using the lower of these values we calculate the arc length. If $|arcLength-0.5| < 1e-5$ we have found a value of $a$ we consider precise enough. If the condition is not met we interpolate a more precis value for $a$ using the secant method. We do this for a total of 5 steps and for every step we re-calculate the arc length and check if it is precise enough. If we haven't found a precise enough value in 5 steps we choose a new value for $q$ and start over.
+
+\subsection{Simplified equation}
+When we consider the equation at $x=0$ we can omit the $y'$ term. We are given a possible solution $y(x)=0.3*cos(\sqrt{q}*x)$. To prove this is correct we do the following:
+
+\begin{center}
+    \input{y_proof.tex}    
+\end{center}
+
+This in turn gives us the relationship $a(q)$:
+
+\begin{center}
+    \input{a_q_relation.tex}
+\end{center}
+
+It follows that:
+
+\begin{center}
+    \input{q_a_relation.tex}
+\end{center}
+
+\subsection{Interval for q}
+Using the pythagorean theorem we can conclude that the upper bound for $a$ is $\sqrt{0.3^2+x^2}=0.5 \Rightarrow x=0.4$. The concave function representing the bow will have a longer arc length than the linear function intersecting the x-axis at the same x-value for any given $x$ within our constraints. An upper bound of $0.4$ for $a$ means the lower value for $q$ is $15.4$. 
+
+To find the lower bound of $a$ TODO: DET HÄR ANTAR JAG.
+
+\subsection{Finding the intitial guesses for a}
+TODO: Ode45 förklara F2
+
+
+\subsection{Interpolating and arc length}
+Using the lower of the initial guesses for a we calculate the arc length and check if $|arcLength-0.5| < 1e-5$. If the condition is not met we complete one step of the secant method to interpolate a more precise value and redo the calculation for arc length and check the condition again. We continue this process for a total of 5 steps. If the condition is not met in any of these steps we increment $q$ by 0.001 and start over.
+
+\subsection{Force acting upon the bow}
+Since the lever arm is 0.3 we get a trivial equation:
+
+$0.3*S=-q*y(0) \Rightarrow 0.3*S=-q*0.3 \Rightarrow S=-q$

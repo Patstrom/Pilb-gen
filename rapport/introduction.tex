@@ -1,0 +1,6 @@
+%Introduction
+We were presented with a the challenge of drawing the shape of a taut ruler-bow. The given information consists of, among other things, the differential function for the curvature of the bow. The initial values for the function as well as the length of the bow.
+
+There are two unknowns, $a$ and $q$. $q$ is dependent on the material attributes of the ruler, such as elasticity modulus and moment of inertia, while $a$ represents the x-value where the function representing the ruler-bow intersects the x-axis. The first task was to determine the relationship between $q$ and $a$, in other words how $a$ depends on $q$. Given that relationship we could guess a value for $q$ and then, using numerical methods, get two guesses for $a$, one directly above the x-axis and one directly below. We could then interpolate the actual point of intersection and then check if the arc length was satisfyingly close to our sought precision. If it wasn't, we re-did our guess for $q$ and started over.
+
+The final task was to determine the force acting upon the bow. This could be solved analytically and turned out to be proportional with $q$.

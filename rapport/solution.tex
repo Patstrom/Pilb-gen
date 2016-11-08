@@ -1,0 +1,43 @@
+The given differential equation that models the curvature is as follow:
+
+\begin{center}
+    \input{curvature.tex}
+\end{center}
+
+\subsection{Initial values}
+The ruler is one meter long and at is drawn such that the edges are 0.3m away from the center along the y-axis. Thus our initial values are $y(0)=0.3$, $y'(0)=0$ and $y(a)=0$. Since the bow is symmetrical around the y-axis we can also conclude that the arc length between $x=0$ and $x=a$ is $0.5$. We also only need to consider this interval. 
+
+\subsection{Approach}
+The general algorithm is to take first determine the relationship $a(q)$ using the simplified equation. Using this relationship we can also decide a reasonable interval for $q$. We then use the lower and upper bound for $a$ as our starting guesses for $q$ and calculate $a$ for every $q$. We then use these values to calculate the arc length and if it is satisfyingly close to 0.5 we have found our values for $q$ and $a$. If it is not we guess a new value for $q$.
+
+\subsection{Simplified equation}
+When we consider the equation at $x=0$ we can omit the $y'$ term. We are given a possible solution $y(x)=0.3*cos(\sqrt{q}*x)$. To prove this is correct we do the following:
+
+\begin{center}
+    \input{y_proof.tex}    
+\end{center}
+
+This in turn gives us the relationship $a(q)$:
+
+\begin{center}
+    \input{a_q_relation.tex}
+\end{center}
+
+It follows that:
+
+\begin{center}
+    \input{q_a_relation.tex}
+\end{center}
+
+\subsection{Interval for q}
+Using the pythagorean theorem we can conclude that the upper bound for $a$ is $\sqrt{0.3^2+x^2}=0.5 \Rightarrow x=0.4$. The concave function representing the bow will have a longer arc length than the linear function intersecting the x-axis at the same x-value for any given $x$ within our constraints. An upper bound of $0.4$ for $a$ means the lower value for $q$ is $15.4$. 
+
+For the lower bound of $a$ we simply use 0. Since the lower bound for $a$ is used to calculate the upper bound of $q$ this does not matter a whole lot. We expect to find our value for $a$ closer to the upper bound rather than the lower.
+
+\subsection{arc length}
+Starting at $q=0$ we calculate $a(q)$ and $arcLength(q, a(q))$. If $abs(arcLength(q, a(q))-0.5) < 1.e-5$ we terminate our algorithm since we have found the sought precision of the arc length. If the condition is not met we increment $q$ by 0.001 and start oer.
+
+\subsection{Force acting upon the bow}
+Since the lever arm is 0.3 we get a trivial equation:
+
+$0.3*S=-q*y(0) \Rightarrow 0.3*S=-q*0.3 \Rightarrow S=-q$
