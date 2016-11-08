@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{listings}
 
 
 \title{Pilbågen}
@@ -30,24 +31,26 @@
 \newpage
 \appendix
 \section{Final Implementation} \label{app:Appendix A}
-Main function.
-%\input{text_bow.m}
 
-Function to calculate arc length.
-%\input{arcLength.m}
+\subsection{Main function}
+\lstinputlisting{../test_bow.m}
+
+\subsection{Function to calculate arc length}
+\lstinputlisting{../arcLength.m}
 
 \appendix
 \section{Alternative Implementation} \label{app:Appendix B}
-Main function.
-%\input{hatarmittliv.m}
 
-Function to calculate the guesses for $a$.
-%\input{guess_a.m}
+\subsection{Main function}
+\lstinputlisting{../old/hatarmittliv.m}
 
-The given differential equation expressed a a set of low-order equations.
-%\input{F2.m}
+\subsection{Function to calculate the guesses for $a$}
+\lstinputlisting{../old/guess_a.m}
 
-Function to calculate arc length (same as other implementation)
-%\input{arcLength.m}
+\subsection{The given differential equation expressed a a set of low-order equations}
+\lstinputlisting{../old/F2.m}
+
+\subsection{Function to calculate arc length (same as other implementation)}
+\lstinputlisting{../arcLength.m}
 
 \end{document}
