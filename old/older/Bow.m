@@ -6,16 +6,16 @@ format short e
 
 [x_0, x_1] = guess();
 x_2 = 0;
-%sekantmetod
+% sekantmetod
 while true
 	q = Q(x_0);
     %Om b�gl�ngd är tillfredsställande nära 0.5 så bryter vi
 	if abs(arcLength(q, x_0) - 0.5) < 1e-5
 		break
 	end
-    
+
     x_2 = x_1 - ( x_1 - x_0 ) / ( y(q,x_1) - y(q,x_0) ) * y(q, x_1);
-	
+
 	x_0 = x_1;
 	x_1 = x_2;
 end

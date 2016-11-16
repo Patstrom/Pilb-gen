@@ -3,8 +3,11 @@ format long e
 Q = @(a) (pi/(2*a))^2;
 a = @(q) pi/(2*sqrt(q));
 
-a_upper = sqrt(0.5^2-0.3^2); % The x-value given from where the straight line with an arc length of 0.5 intersects the x-axis. We know this is the upper bound for a and thus lower bound for q
-a_lower = 0; %Just a guess
+% The x-value given from where the straight line
+% with an arc length of 0.5 intersects the x-axis.
+% We know this is the upper bound for a and thus lower bound for q
+a_upper = sqrt(0.5^2-0.3^2);
+a_lower = 0; % Just a guess
 
 iterations = 0;
 tic

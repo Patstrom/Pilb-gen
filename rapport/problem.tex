@@ -1,0 +1,16 @@
+\subsection{Question}
+%Introduction
+We were presented with a the challenge of drawing the shape of a taut ruler-bow. The given information consists of, among other things, the differential function for the curvature of the bow and the initial values for the function as well as the length of the bow.
+
+There are two unknowns, $a$ and $q$. $q$ is dependent on the material attributes of the ruler, such as elasticity modulus and moment of inertia, while $a$ represents the x-value where the function representing the ruler-bow intersects the x-axis. The first task was to determine the relationship between $q$ and $a$, in other words how $a$ depends on $q$. Given that relationship, we could guess a value for $q$ and then, using numerical methods, get two guesses for $a$—one directly above the x-axis and one directly below. We could then interpolate the actual point of intersection and then check if the arc length was satisfyingly close to our sought precision. If it wasn't, we re-did our guess for $q$ and started over.
+
+The final task was to determine the force acting upon the bow. This could be solved analytically and turned out to be proportional with $q$.
+
+\subsection{Initial values}
+The ruler is one meter long and at is drawn such that the edges are 0.3m away from the center along the y-axis. Thus our initial values are $y(0)=0.3$, $y'(0)=0$ and $y(a)=0$. Since the bow is symmetrical around the y-axis we can also conclude that the arc length between $x=0$ and $x=a$ is $0.5$. We also only need to consider this interval.
+
+The given differential equation that models the curvature is as follow:
+
+\begin{center}
+    \input{equations/curvature.tex}
+\end{center}

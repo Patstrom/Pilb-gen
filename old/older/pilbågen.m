@@ -2,14 +2,14 @@ Q = @(a) pi^2/(4*a^2) %y(a) = 0 => 0.3cos(sqrt(q)a) = 0 => sqrt(q)a=pi/2 => q=pi
 y = @(x) 0.3*cos(sqrt(q)*x)
 %Startv‰rden
 
-x = guess() 
+x = guess()
 x_0 = x(1)
 x_1 = x(2)
 x_2 = 0
-%sekantmetod
+% sekantmetod
 for
 	x_2 = x_1 - (x_1-x_0)/(y(x_1)-y(x_0)) * y(x_1)
-	
+
 	%Om bÂgl‰ngd √§r tillfredsst√§llande n√§ra 0.5 s√• bryter vi
 	if abs((arcLength(Q(x_2), x_2) - 0.5) < 1e-12
 		break
